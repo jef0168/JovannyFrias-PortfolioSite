@@ -2,18 +2,18 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {loadGLTFModel} from '../libs/model'
-import { CarContainer, CarSpinner } from "./car-loader";
+import { ComputerContainer, ComputerSpinner } from "./computer-loader";
 
 function easeOutCirc(x){
     return Math.sqrt(1 - Math.pow(x-1, 4))
 }
 
-const Car = () => {
+const Computer = () => {
     const refContainer = useRef();
     const [loading, setLoading] = useState(true)
     const [renderer, setRenderer] = useState()
     const [_camera, setCamera] = useState()
-    const [target] = useState(new THREE.Vector3(-0.5, 1.2, 0))
+    const [target] = useState(new THREE.Vector3(-0.5, -50, 0))
     const [initialCameraPosition] = useState(
         new THREE.Vector3(
         200 * Math.sin(0.2 * Math.PI),
@@ -52,33 +52,37 @@ const Car = () => {
     
           // 640 -> 240
           // 8   -> 6
-          const scale = scH * 0.005 + 4.8
+          const scale = scH * 0.9 + 4.8
           const camera = new THREE.OrthographicCamera(
             -scale,
             scale,
             scale,
             -scale,
-            0.01,
-            50000000
+            1,
+            99999
           )
           camera.position.copy(initialCameraPosition)
           camera.lookAt(target)
+          console.table(camera.position.x, camera.position.y, camera.position.z);
           setCamera(camera)
     
-          const ambientLight = new THREE.AmbientLight(0xcccccc, 1)
+          const ambientLight = new THREE.AmbientLight(0xcccccc, .5)
           scene.add(ambientLight)
     
           const controls = new OrbitControls(camera, renderer.domElement)
           controls.autoRotate = true
           controls.target = target
           setControls(controls)
-    
+
+          
+          console.log("Loading MODEL...")
           loadGLTFModel(scene, '/computer.glb', {
             receiveShadow: false,
             castShadow: false
           }).then(() => {
             animate()
             setLoading(false)
+            console.log("Done loading")
           })
     
           let req = null
@@ -121,10 +125,10 @@ const Car = () => {
       }, [renderer, handleWindowResize])
 
     return(
-        <CarContainer ref={refContainer}>
-            {loading && <CarSpinner/>}
-        </CarContainer>
+        <ComputerContainer ref={refContainer}>
+            {loading && <ComputerSpinner/>}
+        </ComputerContainer>
     )
 }
 
-export default Car
+export default Computer

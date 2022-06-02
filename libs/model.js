@@ -6,32 +6,31 @@ export function loadGLTFModel(
   options = { receiveShadow: true, castShadow: true }
 ) {
   const { receiveShadow, castShadow } = options
-  return new Promise((resolve, reject) => {
+  let counter  =0;
+  console.log('LoadModel called')
+  return new Promise(async (resolve, reject) => {
     const loader = new GLTFLoader()
-
-    loader.load(
-      glbPath,
-      gltf => {
-        const obj = gltf.scene
-        obj.name = 'dog'
-        obj.position.y = 0
-        obj.position.x = 0
-        obj.receiveShadow = receiveShadow
-        obj.castShadow = castShadow
-        scene.add(obj)
-
-        obj.traverse(function (child) {
-          if (child.isMesh) {
-            child.castShadow = castShadow
-            child.receiveShadow = receiveShadow
-          }
-        })
-        resolve(obj)
-      },
-      undefined,
-      function (error) {
-        reject(error)
-      }
-    )
+    
+    loader.loadAsync(
+      glbPath
+    ).then(gltf => {
+      const obj = gltf.scene
+      obj.name = 'computer'
+      obj.position.y = -150
+      obj.position.x = 0
+      obj.receiveShadow = receiveShadow
+      obj.castShadow = castShadow
+      scene.add(obj)
+      
+      obj.traverse(function (child) {
+        if (child.isMesh) {
+          child.castShadow = castShadow
+          child.receiveShadow = receiveShadow
+        }
+      })
+      resolve(obj)
+    }).catch(function (err) {
+      reject(err)
+    })
   })
 }

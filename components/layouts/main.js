@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import Navbar from '../navbar'
 import dynamic from 'next/dynamic'
-import Car from '../car-model'
-import CarLoader from '../car-loader'
+import ComputerLoader from '../computer-loader'
 import {Box, Container} from '@chakra-ui/react'
 
-const LazyCar = dynamic(() => import('../car-model'), {
+const LazyComputer = dynamic(() => import('../computer-model'), {
     ssr: false,
-    loading: () => <CarLoader/>
+    loading: () => <ComputerLoader/>
 })
 
 const Main = ({children, router}) => {
@@ -19,7 +18,7 @@ const Main = ({children, router}) => {
             </Head>
             <Navbar path={router.asPath}/>
             <Container maxW="container.md" pt={14}>
-                <Car/>
+                <LazyComputer/>
                 {children}
             </Container>
         </Box>
