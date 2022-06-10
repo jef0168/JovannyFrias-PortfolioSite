@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import {Box, Spinner} from '@chakra-ui/react';
 
-export const ComputerSpinner = () => {
+export const ComputerSpinner = () => (
     <Spinner
     size="xl"
     position="absolute"
@@ -10,9 +10,8 @@ export const ComputerSpinner = () => {
     ml="calc(0px - var(--spinner-size) / 2)"
     mt="calc(0px - var(--spinner-size))"
   />
-}
+)
 
-// eslint-disable-next-line react/display-name
 export const ComputerContainer = forwardRef(({children}, ref) => (
     <Box
     ref={ref}

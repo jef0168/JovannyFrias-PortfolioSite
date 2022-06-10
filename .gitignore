@@ -2,6 +2,7 @@
 node_modules
 /dist
 .next
+3dmodel
 
 
 # local env files

@@ -8,7 +8,7 @@ const LogoBox = styled.span`
     font-size: 18px;
     display: inline-flex;
     align-items; center;
-    height: 30px;
+    height: 50px;
     line-height: 20px;
     padding: 10px;
 
@@ -17,18 +17,18 @@ const LogoBox = styled.span`
       }
 
     &:hover img {
-        transform: translateX(-2px);
+        transform: translateY(-2px);
       }
 `
 
 const Logo = () => {
-    const carPrintImg = `/images/car${useColorModeValue('-dark', '')}.png`
+    const carPrintImg = `/images/computer${useColorModeValue('-dark', '')}.png`
 
     return(
         <Link href="/">
             <a>
                 <LogoBox>
-                    <Image src={carPrintImg} width={40} height={20} alt='logo'/>
+                    <Image src={carPrintImg} width={40} height={50} alt='logo'/>
                     <Text color={useColorModeValue('gray.800', 'whiteAlpha.900')}
                     fontFamily='M PLUS Rounded 1c'
                     fontWeight='bold'
