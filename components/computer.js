@@ -110,6 +110,7 @@ const Computer = () => {
     
           const controls = new OrbitControls(camera, renderer.domElement)
           controls.autoRotate = true
+          controls.enableZoom = false
           controls.target = target
           setControls(controls)
 
