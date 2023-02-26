@@ -1,7 +1,6 @@
 import {
     ChakraProvider,
     cookieStorageManager,
-    createCookieStorageManager,
     localStorageManager
 } from '@chakra-ui/react'
 import theme from '../libs/theme'
