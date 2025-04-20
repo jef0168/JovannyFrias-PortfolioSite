@@ -2,12 +2,15 @@ import { Container, Box, Heading , Image, chakra, Checkbox, Stack, Link, Tabs, T
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
 import { BioYear, BioSection } from '../components/bio'
-
+import { useEffect } from 'react'
 const ProfileImage = chakra(Image, {
     shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
   })
 
 const Home = () => {
+  useEffect(() => {
+  })
+
   return (
     <Container>
       {/* <Box borderRadius="lg" bg="teal" p={3} mb={6} align="center">
@@ -104,12 +107,12 @@ const Home = () => {
           </BioSection>
           <BioSection>
             <BioYear>
-              Future Checklist
+              Future
             </BioYear>
             <Stack direction='column' mt={3} spacing={5}>
               <Checkbox isDisabled verticalAlign="center" align="center" pointerEvents="none"><div></div>Complete a Masters program in Artificial Intelligence</Checkbox>
-              <Checkbox isDisabled verticalAlign="center" align="center" pointerEvents="none"><div></div>Buy a House</Checkbox>
-              <Checkbox isDisabled verticalAlign="center" align="center" pointerEvents="none"><div></div>Travel the world</Checkbox>
+              <Checkbox isDisabled isChecked verticalAlign="center" align="center" pointerEvents="none"><div></div>Buy a House</Checkbox>
+              <Checkbox isDisabled verticalAlign="center" align="center" pointerEvents="none"><div></div>Buy my dream Car</Checkbox>
               <Checkbox isDisabled verticalAlign="center" align="center" pointerEvents="none"><div></div>Start a family</Checkbox>
             </Stack>
           </BioSection>
@@ -129,10 +132,11 @@ const Home = () => {
 
               </TabPanel>
               <TabPanel>
-              <Heading as='h6' size='xs'>Sneaker Head</Heading>
+                <Heading as='h6' size='xs'>Sneaker Head</Heading>
+                
               </TabPanel>
               <TabPanel>
-
+              <Heading as='h6' size='xs'>Music</Heading>
               </TabPanel>
             </TabPanels>
           </Tabs>
