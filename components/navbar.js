@@ -21,7 +21,7 @@ const LinkItem = ({ href, path, children }) => {
     const active = path === href
     const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
     return (
-        <NextLink href={href}>
+        <NextLink href={href} legacyBehavior>
             <Link p={2}
                 bg={active ? 'glassTeal' : undefined}
                 color={active ? '#202023' : inactiveColor}
@@ -29,15 +29,15 @@ const LinkItem = ({ href, path, children }) => {
                 {children}
             </Link>
         </NextLink>
-    )
+    );
 }
 
 const DownloadItem = ({href, path, children}) => {
     const active = path ===href 
     const inactiveColor = useColorModeValue('gray200', 'whiteAlpha,900')
     console.log('Clicked')
-    return(
-        <NextLink href={href}>
+    return (
+        <NextLink href={href} legacyBehavior>
             <Link href={href} p={2} target="_blank" download
                 bg={active ? 'glassTeal' : undefined}
                 color={active ? '#202023' : inactiveColor}
@@ -45,7 +45,7 @@ const DownloadItem = ({href, path, children}) => {
                 {children}
             </Link>
         </NextLink>
-    )
+    );
 }
 
 const Navbar = props => {
@@ -83,19 +83,19 @@ const Navbar = props => {
                                 aria-label="Options"
                             />
                             <MenuList>
-                                <NextLink href="/" passHref>
+                                <NextLink href="/" passHref legacyBehavior>
                                     <MenuItem as={Link}>About</MenuItem>
                                 </NextLink>
-                                <NextLink href="/projects" passHref>
+                                <NextLink href="/projects" passHref legacyBehavior>
                                     <MenuItem as={Link}>Projects</MenuItem>
                                 </NextLink>
-                                <NextLink href="/posts" passHref>
+                                <NextLink href="/posts" passHref legacyBehavior>
                                     <MenuItem as={Link}>Posts</MenuItem>
                                 </NextLink>
-                                <NextLink href='../public/Resume.docx'>
+                                <NextLink href='../public/Resume.docx' legacyBehavior>
                                     <MenuItem as={Link}>Resume</MenuItem>
                                 </NextLink>
-                                <NextLink href='../contact' passHref>
+                                <NextLink href='../contact' passHref legacyBehavior>
                                     <MenuItem as={Link}>Contact</MenuItem>
                                 </NextLink>
                             </MenuList>
@@ -104,7 +104,7 @@ const Navbar = props => {
                 </Box>
             </Container>
         </Box>
-    )
+    );
 }
 
 export default Navbar;

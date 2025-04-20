@@ -24,22 +24,21 @@ const LogoBox = styled.span`
 const Logo = () => {
     const carPrintImg = `/images/computer${useColorModeValue('-dark', '')}.png`
 
-    return(
+    return (
         <Link href="/">
-            <a>
-                <LogoBox>
-                    <Image src={carPrintImg} width={40} height={50} alt='logo'/>
-                    <Text color={useColorModeValue('gray.800', 'whiteAlpha.900')}
-                    fontFamily='M PLUS Rounded 1c'
-                    fontWeight='bold'
-                    ml={2}
-                    verticalAlign='center'>
-                        Jovanny Frias
-                    </Text>
-                </LogoBox>
-            </a>
+            <LogoBox>
+                <Image src={carPrintImg} width={40} height={50} alt='logo'/>
+                <Text color={useColorModeValue('gray.800', 'whiteAlpha.900')}
+                fontFamily='M PLUS Rounded 1c'
+                fontWeight='bold'
+                ml={2}
+                verticalAlign='center'>
+                    Jovanny Frias
+                </Text>
+            </LogoBox>
+
         </Link>
-    )
+    );
 }
 
 export default Logo

@@ -65,7 +65,7 @@ const Computer = () => {
       /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         const { current: container } = refContainer
-        if (container && !renderer) {
+        if (container && !renderer ) {
           const scW = container.clientWidth
           const scH = container.clientHeight
     
@@ -150,6 +150,7 @@ const Computer = () => {
             console.log('unmount')
             cancelAnimationFrame(req)
             renderer.dispose()
+            container.removeChild(renderer.domElement);
           }
         }
       }, [])
