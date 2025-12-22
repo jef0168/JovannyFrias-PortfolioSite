@@ -114,59 +114,9 @@ const tabs = ['Programming', 'Sneakers', 'Music']
       </BioSection>
 
       <BioSection class="mb-2">
-        <BioYear>Future</BioYear>
-        <div class="flex flex-col gap-2 mt-2">
-            <label class="flex items-center space-x-2 text-gray-500">
-                <input type="checkbox" disabled class="form-checkbox text-teal-500 rounded border-gray-300" />
-                <span>Complete a Masters program in Artificial Intelligence</span>
-            </label>
-             <label class="flex items-center space-x-2 text-gray-500">
-                <input type="checkbox" disabled checked class="form-checkbox text-teal-500 rounded border-gray-300" />
-                <span>Buy a House</span>
-            </label>
-             <label class="flex items-center space-x-2 text-gray-500">
-                <input type="checkbox" disabled class="form-checkbox text-teal-500 rounded border-gray-300" />
-                <span>Buy my dream Car</span>
-            </label>
-             <label class="flex items-center space-x-2 text-gray-500">
-                <input type="checkbox" disabled class="form-checkbox text-teal-500 rounded border-gray-300" />
-                <span>Start a family</span>
-            </label>
-        </div>
+        <BioYear>2024</BioYear>
+          Got married!
       </BioSection>
     </Section>
-
-    <Section :delay="0.3">
-      <h3 class="text-xl font-bold underline decoration-4 decoration-teal-500 underline-offset-4 mb-4 font-m-plus">
-        Hobbies
-      </h3>
-      
-      <!-- Simple Tabs Implementation using Tailwind -->
-      <div class="flex space-x-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg mb-4">
-        <button 
-           v-for="tab in tabs" 
-           :key="tab"
-           @click="activeTab = tab"
-           class="flex-1 py-1 px-3 rounded-md text-sm font-medium transition-colors focus:outline-none"
-           :class="activeTab === tab ? 'bg-white dark:bg-teal-600 shadow-sm text-teal-700 dark:text-white' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'"
-        >
-            {{ tab }}
-        </button>
-      </div>
-
-      <div v-if="activeTab === 'Programming'" class="animate-fade-in">
-        <!-- Content for Programming tab (empty in original) -->
-        <p>Programming content...</p>
-      </div>
-      <div v-else-if="activeTab === 'Sneakers'" class="animate-fade-in">
-         <h6 class="font-bold text-sm">Sneaker Head</h6>
-      </div>
-      <div v-else-if="activeTab === 'Music'" class="animate-fade-in">
-         <h6 class="font-bold text-sm">Music</h6>
-      </div>
-
-    </Section>
-
-
   </div>
 </template>

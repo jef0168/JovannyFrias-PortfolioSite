@@ -20,9 +20,8 @@ const isFailed = ref(false) // New fail state
 const showFailMsg = ref(false)
 const currentTrick = ref<'kickflip' | 'heelflip' | 'treflip' | 'impossible'>('kickflip')
 let flipProgress = 0
-let randomTilt = 0
+let randomTilt = .5
 let popStrength = 2
-let failRotationAxis = new THREE.Vector3() // Store random fail axis
 const speed = 0.2 // Speed of "infinite" motion
 
 // Skill Check State
@@ -53,14 +52,6 @@ const target = new THREE.Vector3(0.98, 0.62, 0.19)
         
 // Camera state
 // Removed baseScale, actionScale, currentScale as they are for OrthographicCamera
-
-// Update for Perspective Camera
-const updateCameraFrustum = (scale: number, aspect: number) => {
-    if (camera && 'aspect' in camera) {
-        camera.aspect = aspect
-        camera.updateProjectionMatrix()
-    }
-}
 
 const createConcreteTexture = () => {
     const canvas = document.createElement('canvas');
@@ -178,22 +169,13 @@ const init = () => {
     dirLight.shadow.bias = -0.0005
     scene.add(dirLight)
 
-    // Controls - Restore user control
+    // Controls - Disabled for fixed camera
     controls = new OrbitControls(camera, renderer.domElement)
-    controls.enableRotate = true // User requested ability to look around
-    controls.enableZoom = true
-    controls.enablePan = true
+    controls.enableRotate = false
+    controls.enableZoom = false
+    controls.enablePan = false
     controls.target = target
     controls.update()
-    
-    // Log position on drag end helper
-    controls.addEventListener('end', () => {
-        console.log(`
-CAMERA SETTINGS:
-const initialCameraPosition = new THREE.Vector3(${camera.position.x.toFixed(2)}, ${camera.position.y.toFixed(2)}, ${camera.position.z.toFixed(2)})
-const target = new THREE.Vector3(${controls.target.x.toFixed(2)}, ${controls.target.y.toFixed(2)}, ${controls.target.z.toFixed(2)})
-        `)
-    })
 
     // Load Model
     loadGLTFModel(scene, '/skateboard.glb', {
@@ -277,7 +259,9 @@ const animate = () => {
             flipProgress += 0.010
             
             if (flipProgress <= 1) {
-                const jumpHeight = 1.5 * popStrength
+                // Increase jump height for impossible trick to prevent ground clipping
+                const heightMultiplier = currentTrick.value === 'impossible' ? 2.5 : 1.5
+                const jumpHeight = heightMultiplier * popStrength
                 
                 // Easing constant (Sine Ease Out for smooth jump apex)
                 // y = sin(progress * PI)
@@ -360,12 +344,16 @@ const animate = () => {
                             skateboard.rotation.x = (Math.sin(flipPhaseProgress * Math.PI * 2) * 0.3) + popSnap + randomTilt + popRotation
                             
                         } else if (currentTrick.value === 'impossible') {
-                            // Impossible: Wrapping sensation
-                            // Vertical rotation (X)
+                            // Impossible: Wrapping sensation with lateral tilt
+                            // Vertical rotation (X) - main flip axis
                             skateboard.rotation.x = (-flipPhaseProgress * Math.PI * 2) + popSnap + popRotation
                             
-                            // Subtle side woggle + random tilt
-                            skateboard.rotation.z = (Math.sin(flipPhaseProgress * Math.PI * 2) * 0.1) + (randomTilt * 2 * Math.sin(flipPhaseProgress * Math.PI))
+                            // Add lateral tilt (Y-axis) for realistic impossible motion
+                            // Real impossibles have a scooping/tilting motion, not perfectly vertical
+                            skateboard.rotation.y = Math.sin(flipPhaseProgress * Math.PI) * 0.4 + (randomTilt * 0.5)
+                            
+                            // Subtle side woggle + random tilt on Z
+                            skateboard.rotation.z = (Math.sin(flipPhaseProgress * Math.PI * 2) * 0.15) + (randomTilt * 2 * Math.sin(flipPhaseProgress * Math.PI))
                         }
                     }
                 }
