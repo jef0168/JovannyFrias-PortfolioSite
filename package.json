@@ -1,34 +1,23 @@
 {
-  "name": "jovanny-portfolio",
-  "version": "1.0.0",
-  "description": "Jovanny's website",
-  "main": "index.js",
+  "name": "JovannyFrias-PortfolioSite",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
-    "build": "next build",
-    "prettier": "prettier -write .",
-    "lint": "next lint"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
-  "keywords": [],
-  "author": "Jovanny Frias",
-  "license": "MIT",
   "dependencies": {
-    "@chakra-ui/icons": "^2.1.1",
-    "@chakra-ui/react": "^2.0.0",
-    "@emailjs/browser": "^3.10.0",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "framer-motion": "^6.3.0",
-    "next": "^15.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.3.1",
-    "spotify-web-api-node": "^5.0.2",
-    "three": "^0.139.2"
-  },
-  "devDependencies": {
-    "eslint": "^8.13.0",
-    "eslint-config-next": "^12.1.5",
-    "prettier": "^2.6.2"
+    "@emailjs/browser": "^4.4.1",
+    "@nuxtjs/color-mode": "^4.0.0",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@types/three": "^0.181.0",
+    "@vueuse/motion": "^3.0.3",
+    "nuxt": "^4.2.1",
+    "three": "^0.181.2",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.3"
   }
 }
