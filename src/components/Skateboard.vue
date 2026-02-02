@@ -116,7 +116,7 @@ const init = () => {
     })
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(scW, scH)
-    renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.outputColorSpace = THREE.SRGBColorSpace
     // Enable Shadows
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
