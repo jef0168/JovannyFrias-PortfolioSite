@@ -21,7 +21,7 @@
 
     <ClientOnly>
        <div class="mt-8">
-           <Skateboard />
+          <Skateboard />
        </div>
     </ClientOnly>
   </div>
