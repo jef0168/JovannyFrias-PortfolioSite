@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  publish = ".output/public"
+
+[build.environment]
+  NETLIFY_NEXTJS_SKIP_PLUGIN = "true"
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
